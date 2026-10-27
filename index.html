@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f6">
   <title>Happy Birthday, My Love! 💗</title>
 
   <style>
@@ -59,6 +60,7 @@
       font-size: 65px;
       opacity: 0.25;
       animation: sway 4s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .hero::before {
@@ -119,6 +121,13 @@
       box-shadow: 0 12px 28px #e6539155;
     }
 
+    .button:focus-visible,
+    .photo-reveal:focus-visible,
+    .cake:focus-visible {
+      outline: 3px solid var(--deep-rose);
+      outline-offset: 4px;
+    }
+
     .section {
       padding: 70px 20px;
       position: relative;
@@ -146,6 +155,7 @@
     }
 
     /* Photo gallery */
+
     .gallery {
       width: min(1050px, 100%);
       margin: 35px auto 0;
@@ -163,6 +173,7 @@
       transform: rotate(var(--tilt, 0deg));
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
+      min-width: 0;
     }
 
     .photo-card:hover {
@@ -178,6 +189,7 @@
       color: #f07eaa;
       font-size: 20px;
       z-index: 2;
+      pointer-events: none;
     }
 
     .photo-card:nth-child(odd) {
@@ -197,19 +209,24 @@
     }
 
     .photo-frame img {
-      display: none;
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease;
     }
 
     .photo-card.revealed .photo-frame img {
-      display: block;
+      opacity: 1;
+      visibility: visible;
     }
 
     .photo-reveal {
       position: absolute;
       inset: 0;
+      z-index: 1;
       border: 0;
       width: 100%;
       height: 100%;
@@ -221,10 +238,15 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .photo-card.revealed .photo-reveal {
       display: none;
+    }
+
+    .photo-reveal:disabled {
+      cursor: wait;
     }
 
     .photo-emoji {
@@ -252,6 +274,7 @@
     }
 
     /* Cake section */
+
     .cake-card {
       width: min(520px, 100%);
       margin: 0 auto;
@@ -267,6 +290,7 @@
       font-size: 100px;
       cursor: pointer;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
       transition: transform 0.25s;
       animation: cakeBounce 2s ease-in-out infinite;
     }
@@ -283,6 +307,7 @@
     }
 
     /* Love letter */
+
     .letter-wrap {
       max-width: 650px;
       margin: 0 auto;
@@ -453,6 +478,7 @@
     <section class="section" id="memories">
       <h2 class="section-heading">Our Little Memories 📸</h2>
       <div class="divider"></div>
+
       <p class="section-subtitle">
         Tap each little picture to reveal a memory. Each frame has a little piece of my heart. 💕
       </p>
@@ -460,8 +486,8 @@
       <div class="gallery">
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN2.jpeg" alt="A favourite memory together" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo one">
+            <img src="./AN2.jpeg" alt="A favourite memory together" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo one">
               <span class="photo-emoji">📸</span>
               <span class="tap-text">tap to reveal 💗</span>
             </button>
@@ -471,8 +497,8 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN9.jpeg" alt="A sweet memory" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo two">
+            <img src="./AN9.jpeg" alt="A sweet memory" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo two">
               <span class="photo-emoji">🌷</span>
               <span class="tap-text">a little surprise 🎀</span>
             </button>
@@ -482,8 +508,8 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN3.jpeg" alt="A special moment" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo three">
+            <img src="./AN3.jpeg" alt="A special moment" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo three">
               <span class="photo-emoji">💌</span>
               <span class="tap-text">open me, pretty girl</span>
             </button>
@@ -493,8 +519,8 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN10.jpeg" alt="A lovely photo" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo four">
+            <img src="./AN10.jpeg" alt="A lovely photo" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo four">
               <span class="photo-emoji">🎀</span>
               <span class="tap-text">one more, my love 💕</span>
             </button>
@@ -504,8 +530,8 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN7.jpeg" alt="Another favourite memory" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo five">
+            <img src="./AN7.jpeg" alt="Another favourite memory" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo five">
               <span class="photo-emoji">🩷</span>
               <span class="tap-text">a memory just for us</span>
             </button>
@@ -515,8 +541,8 @@
 
         <article class="photo-card">
           <div class="photo-frame">
-            <img src="AN5.jpeg" alt="A photo to treasure" loading="lazy">
-            <button class="photo-reveal" onclick="revealPhoto(this)" aria-label="Reveal photo six">
+            <img src="./AN5.jpeg" alt="A photo to treasure" loading="eager">
+            <button class="photo-reveal" type="button" onclick="revealPhoto(this)" aria-label="Reveal photo six">
               <span class="photo-emoji">🧸</span>
               <span class="tap-text">last one... for now 🎀</span>
             </button>
@@ -529,15 +555,24 @@
     <section class="section" id="cake">
       <h2 class="section-heading">Make a Birthday Wish 🎂</h2>
       <div class="divider"></div>
+
       <p class="section-subtitle">
         Close your eyes, make a wish, and tap the cake! ✨
       </p>
 
       <div class="cake-card">
-        <div class="cake" role="button" tabindex="0" aria-label="Tap the birthday cake" onclick="celebrate()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();celebrate();}">
+        <div
+          class="cake"
+          role="button"
+          tabindex="0"
+          aria-label="Tap the birthday cake"
+          onclick="celebrate()"
+          onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();celebrate();}"
+        >
           🎂
         </div>
-        <div class="cake-message" id="cakeMessage">
+
+        <div class="cake-message" id="cakeMessage" aria-live="polite">
           Psst... your wish deserves a little magic. 💖
         </div>
       </div>
@@ -546,6 +581,7 @@
     <section class="section" id="letter">
       <h2 class="section-heading">A Little Letter for You 💌</h2>
       <div class="divider"></div>
+
       <p class="section-subtitle">
         Because some things deserve to be said with a little extra love.
       </p>
@@ -553,10 +589,12 @@
       <div class="letter-wrap">
         <div class="envelope">
           <div class="envelope-icon">💌</div>
+
           <p style="color:#7b3156;font-size:18px;font-weight:bold;">
             To my favourite person in the whole world...
           </p>
-          <button class="button" id="letterButton" onclick="toggleLetter()">
+
+          <button class="button" id="letterButton" type="button" onclick="toggleLetter()">
             Open your letter 💗
           </button>
         </div>
@@ -593,34 +631,117 @@
   </footer>
 
   <script>
-    
-function revealPhoto(button) {
-  const card = button.closest(".photo-card");
-  const img = card.querySelector("img");
+    /*
+      Photo reveal:
+      1. Find the image belonging to the tapped card.
+      2. Force the image to load eagerly.
+      3. Reveal the card only after the image loads successfully.
+      4. Restore the button if loading fails so the visitor can retry.
+    */
 
-  function showPhoto() {
-    if (img.naturalWidth > 0) {
-      card.classList.add("revealed");
-    } else {
-      alert(
-        "Photo not found: " + img.getAttribute("src") +
-        "\nCheck the filename and make sure the photo is in the same folder as your HTML file."
-      );
+    function revealPhoto(button) {
+      const card = button.closest(".photo-card");
+
+      if (!card) {
+        console.error("Could not find the photo card.");
+        return;
+      }
+
+      const img = card.querySelector(".photo-frame img");
+
+      if (!img) {
+        console.error("Could not find the photo inside the card.");
+        return;
+      }
+
+      if (card.classList.contains("revealed")) {
+        return;
+      }
+
+      // If this photo has already loaded, reveal it immediately.
+      if (img.complete && img.naturalWidth > 0) {
+        card.classList.add("revealed");
+        return;
+      }
+
+      // Prevent multiple taps while the same photo is loading.
+      if (button.disabled) {
+        return;
+      }
+
+      button.disabled = true;
+
+      const tapText = button.querySelector(".tap-text");
+      const originalText = tapText ? tapText.textContent : "";
+
+      if (tapText) {
+        tapText.textContent = "loading our memory... 💗";
+      }
+
+      img.loading = "eager";
+
+      let finished = false;
+
+      function cleanup() {
+        img.removeEventListener("load", onLoad);
+        img.removeEventListener("error", onError);
+      }
+
+      function onLoad() {
+        if (finished) return;
+        finished = true;
+        cleanup();
+
+        if (img.naturalWidth > 0) {
+          card.classList.add("revealed");
+        } else {
+          showError();
+        }
+      }
+
+      function onError() {
+        if (finished) return;
+        finished = true;
+        cleanup();
+        showError();
+      }
+
+      function showError() {
+        button.disabled = false;
+
+        if (tapText) {
+          tapText.textContent = originalText;
+        }
+
+        alert(
+          "This photo could not load. Please check your internet connection and try again.\n\nFile: " +
+          img.getAttribute("src")
+        );
+      }
+
+      // Register events before requesting the image again.
+      img.addEventListener("load", onLoad);
+      img.addEventListener("error", onError);
+
+      // Request the same image URL, which also retries a failed load.
+      img.src = img.getAttribute("src");
+
+      // Handle a cached image or a request that finished immediately.
+      if (img.complete) {
+        if (img.naturalWidth > 0) {
+          onLoad();
+        } else {
+          onError();
+        }
+      }
     }
-  }
-
-  if (img.complete) {
-    showPhoto();
-  } else {
-    img.onload = showPhoto;
-    img.onerror = showPhoto;
-  }
-}
-
 
     function celebrate() {
       const message = document.getElementById("cakeMessage");
-      message.textContent = "YAY! 🎉 May all your wishes come true, birthday girl! 💗";
+
+      message.textContent =
+        "YAY! 🎉 May all your wishes come true, birthday girl! 💗";
+
       makeConfetti(100);
       makeHearts(15);
     }
@@ -635,24 +756,38 @@ function revealPhoto(button) {
         : "Open your letter 💗";
 
       if (isOpen) {
-        letter.scrollIntoView({ behavior: "smooth", block: "center" });
+        letter.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
         makeHearts(8);
       }
     }
 
     function makeConfetti(amount) {
-      const colors = ["#ff8fba", "#e65391", "#ffd166", "#ffb6d0", "#cdb4db", "#ffffff"];
+      const colors = [
+        "#ff8fba",
+        "#e65391",
+        "#ffd166",
+        "#ffb6d0",
+        "#cdb4db",
+        "#ffffff"
+      ];
 
       for (let i = 0; i < amount; i++) {
         const piece = document.createElement("div");
+
         piece.className = "confetti";
         piece.textContent = Math.random() > 0.5 ? "♥" : "✦";
         piece.style.left = Math.random() * 100 + "vw";
-        piece.style.color = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.color =
+          colors[Math.floor(Math.random() * colors.length)];
         piece.style.fontSize = (12 + Math.random() * 18) + "px";
         piece.style.animationDuration = (2 + Math.random() * 3) + "s";
 
         document.body.appendChild(piece);
+
         setTimeout(() => piece.remove(), 5500);
       }
     }
@@ -662,20 +797,25 @@ function revealPhoto(button) {
 
       for (let i = 0; i < amount; i++) {
         const heart = document.createElement("div");
+
         heart.className = "floating-heart";
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.textContent =
+          hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.fontSize = (18 + Math.random() * 24) + "px";
         heart.style.animationDuration = (4 + Math.random() * 4) + "s";
 
         document.body.appendChild(heart);
+
         setTimeout(() => heart.remove(), 8500);
       }
     }
 
     // A few gentle floating hearts in the background.
     setInterval(() => {
-      if (Math.random() > 0.35) makeHearts(1);
+      if (Math.random() > 0.35) {
+        makeHearts(1);
+      }
     }, 1800);
   </script>
 </body>
